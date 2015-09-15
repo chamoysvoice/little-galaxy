@@ -9,4 +9,5 @@ int main(int argc, char **argv)
 	string s2 = "uniqe yop";
 	
 	cout << isUnique(s2);
+	cout << isUniqueWOArray(s);
 }

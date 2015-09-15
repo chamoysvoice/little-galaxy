@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include<cctype>
 
 /*
  * Problem source: "Cracking the Coding Interview" - 5ed - page: 73
@@ -12,6 +13,17 @@ bool isUnique(std::string s){
 		frequency[s.at(i)]++;
 		if(frequency[s.at(i)] >= 2){
 			return false;
+		}
+	}
+	return true;
+}
+
+bool isUniqueWOArray(std::string s){
+	for(int i = 0; i < s.length(); i++){
+		for(int j = i; j < s.length(); j++){
+			if(isalpha(s.at(i)) && isalpha(s.at(j)) && s.at(i) == s.at(j)){
+				return false;
+			}
 		}
 	}
 	return true;
