@@ -29,15 +29,15 @@ int main(){
 	t = root;
 	while(t != NULL){
 		printf("%d\n", t->data);
-		if(t->next != NULL){
+		if(t->next == NULL){
 			end = t;
 		}
 		t = t->next;
 	}
 
-	printf("End reached, lets go backwards!");
+	printf("End reached, lets go backwards!\n");
 
-	t = end->next;
+	t = end;
 	while(t != NULL){
 		if(t->next != NULL){
 			free(t->next);
