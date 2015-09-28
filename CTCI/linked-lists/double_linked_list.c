@@ -45,4 +45,6 @@ int main(){
 		printf("%d\n", t->data);
 		t = t->prev;
 	}
+	// free initial node
+	free(root);
 }
