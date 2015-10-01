@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define MIN_SIZE 1000000
+#define MIN_SIZE 100000
 #define MAX_SIZE 1000000
 #define CARRY 1
 #define NO_CARRY 0
@@ -94,21 +94,13 @@ int main(){
 	while(t1->next || t2->next){
 		if(length_1){
 			t3->data = (t1->data + carry) % TEN;
-			if(t1->data + carry == TEN){
-				carry = CARRY;
-			} else {
-				carry = NO_CARRY;
-			}
+			carry = (t1->data + carry == TEN)? CARRY : NO_CARRY;
 			t1 = t1->next;
 			length_1--;
 		} else{
 
 			t3->data = (t2->data + carry) % TEN;
-			if(t2->data + carry == TEN){
-				carry = CARRY;
-			} else {
-			carry = NO_CARRY;
-			}
+			carry = (t2->data + carry == TEN)? CARRY : NO_CARRY;
 			t2 = t2->next;
 			length_2--;
 		}
