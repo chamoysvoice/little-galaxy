@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <time.h>
-#define N 1000
+#define N 10
 
 struct node{
   struct node *next;
@@ -11,15 +11,15 @@ struct node{
 
 typedef struct node Node;
 
-Node *recursiveInsertionSort(Node *root){
+void recursiveInsertionSort(Node *root){
   if(!root->next){
-    return root;
+    return;
   }
 
-  Node *sortedSubArray = recursiveInsertionSort(root->next);
+  recursiveInsertionSort(root->next);
   Node *t = root;
   int data;
-  
+
   while(t->next){
     if(t->data > t->next->data){
       data = t->data;
@@ -28,7 +28,7 @@ Node *recursiveInsertionSort(Node *root){
     }
     t = t->next;
   }
-  return root;
+  return;
 }
 
 int main(){
