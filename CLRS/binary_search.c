@@ -1,27 +1,46 @@
 #include <stdio.h>
-#include <assert.h>
+#include <math.h>
+#include <time.h>
+#include <stdlib.h>
+#define LENGTH 16
+#define LOG_BASE 2
+#define HALF 0.5
+#define NOT_FOUND -1
 
-int binarySearch(int *a, int element, int s, int e){
-  if(s > e){
-    return -1;
+
+/* O(log n) */
+/* Needs an ordered array to work */
+int binarySearch(int *A, int value){
+  int i = LENGTH / 2;
+  for(int j = 1; j <= log(LENGTH) / log(LOG_BASE); j++){
+    if(value == A[i]){
+      return i;
+    } else if(value < A[i]){
+      i -= LENGTH * pow(HALF, j + 1);
+    } else if(value > A[i]){
+      i += LENGTH * pow(HALF, j + 1);
+    }
   }
-  if(s == e){
-    return -1;
-  }
-  if(a[(s + e) / 2] == element){
-    return (s + e) / 2;
-  } else if(a[(s + e) / 2] < element){
-    return binarySearch(a, element, s, ((s + e) / 2));
-  } else {
-    return binarySearch(a, element, (s + e) / 2 + 1, e);
-  }
+  return NOT_FOUND;
 }
 
-int main(){
-  int a[10] = {1, 3, 5, 5, 6, 9, 12, 30, 43, 54};
 
-  int i;
-  for (i = 1; i < 100; i++){
-    printf("%d ", binarySearch(a, i, 0, 9));
+int main(){
+  srand(time(NULL));
+
+  int array[LENGTH];
+  int search_for = rand() % (LENGTH * 2);
+  int index;
+
+  for(int i = 0; i < LENGTH; i++){
+    array[i] = i * 2;
+    printf("%d ", array[i]);
+  }
+
+  printf("\n search: %d\n", search_for);
+  if((index = binarySearch(array, search_for)) != -1){
+    printf("\nfound in index %d\n",index);
+  } else {
+    printf("\nelement not found\n");
   }
 }
